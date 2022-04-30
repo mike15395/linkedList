@@ -113,7 +113,23 @@ class Linkedlist{
         }
         
     }
+      
+    reverse() {
+        // prev current next
+        let prev = null;
+        let current = this.root;
+        let next = current.nextAddress;
 
+        while (next != null) {
+            current.nextAddress = prev;
+            //change prev current next
+            prev = current;
+            current = next;
+            next = next.nextAddress;
+        }
+        current.nextAddress = prev;
+        this.root = current;
+    }
     }
 
 
@@ -128,7 +144,5 @@ list.addFront(8);
 list.insertAt(12, 3);
 list.insertAt(19, 4);
 list.display();
-list.deleteAt(0);
-list.display();
-list.deleteAt(7);
+list.reverse();
 list.display();
